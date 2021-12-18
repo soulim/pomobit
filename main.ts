@@ -2,6 +2,7 @@
 input.onButtonPressed(Button.A, function () {
     if (state == 0) {
         state = 1
+        started_at = control.millis()
     } else {
         state = 0
     }
@@ -18,6 +19,7 @@ input.onButtonPressed(Button.AB, function () {
 input.onButtonPressed(Button.B, function () {
     state = 0
 })
+let started_at = 0
 let state = 0
 let mode = 0
 // Modes:
@@ -28,6 +30,8 @@ mode = 0
 // 0 - stopped
 // 1 - started
 state = 0
+started_at = 0
+let delta = 0
 basic.forever(function () {
-	
+    delta = control.millis() - started_at
 })
