@@ -6,6 +6,7 @@ input.onButtonPressed(Button.A, function () {
         state = 0
     }
 })
+// Toggle/show the current mode.
 input.onButtonPressed(Button.AB, function () {
     if (mode == 0) {
         mode = 1
@@ -13,6 +14,7 @@ input.onButtonPressed(Button.AB, function () {
         mode = 0
     }
 })
+// Reset the timer.
 input.onButtonPressed(Button.B, function () {
     state = 0
 })
