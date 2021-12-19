@@ -4,8 +4,10 @@ input.onButtonPressed(Button.A, function () {
         state = 1
         started_at = control.millis()
         current_min = 0
+    } else if (state == 1) {
+        state = 2
     } else {
-        state = 0
+        state = 1
     }
 })
 // Toggle/show the current mode.
@@ -19,7 +21,7 @@ input.onButtonPressed(Button.AB, function () {
 // Reset the timer.
 input.onButtonPressed(Button.B, function () {
     state = 0
-    led.plot(0, 2)
+    basic.clearScreen()
 })
 let y = 0
 let x = 0
@@ -35,6 +37,7 @@ mode = 0
 // States:
 // 0 - stopped
 // 1 - started
+// 2 - paused
 state = 0
 started_at = 0
 let delta = 0
