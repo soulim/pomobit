@@ -3,6 +3,7 @@ input.onButtonPressed(Button.A, function () {
     if (state == 0) {
         state = 1
         started_at = control.millis()
+        current_min = 0
     } else {
         state = 0
     }
@@ -18,7 +19,12 @@ input.onButtonPressed(Button.AB, function () {
 // Reset the timer.
 input.onButtonPressed(Button.B, function () {
     state = 0
+    led.plot(0, 2)
 })
+let y = 0
+let x = 0
+let delta_min = 0
+let current_min = 0
 let started_at = 0
 let state = 0
 let mode = 0
@@ -33,5 +39,18 @@ state = 0
 started_at = 0
 let delta = 0
 basic.forever(function () {
-    delta = control.millis() - started_at
+    if (state == 1) {
+        delta = control.millis() - started_at
+        delta_min = Math.floor(delta / 500)
+        if (delta_min > current_min) {
+            current_min = delta_min
+            x = Math.floor(current_min / 5)
+            y = current_min % 5
+            led.plot(x, y)
+        }
+        if (current_min > 24) {
+            state = 0
+            basic.clearScreen()
+        }
+    }
 })
