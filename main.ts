@@ -41,14 +41,14 @@ let delta = 0
 basic.forever(function () {
     if (state == 1) {
         delta = control.millis() - started_at
-        delta_min = Math.floor(delta / 500)
+        delta_min = Math.floor(delta / 1000)
         if (delta_min > current_min) {
             current_min = delta_min
-            x = Math.floor(current_min / 5)
-            y = current_min % 5
+            x = Math.floor((current_min - 1) / 5)
+            y = (current_min - 1) % 5
             led.plot(x, y)
         }
-        if (current_min > 24) {
+        if (current_min > 25) {
             state = 0
             basic.clearScreen()
         }
